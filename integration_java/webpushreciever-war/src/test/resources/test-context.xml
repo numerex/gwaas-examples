@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/beans/spring-util-3.0.xsd
+		">
+	
+
+
+	 <jaxrs:client id="messagePushService_testClient"
+                   address="${rest.bind_address}"
+                   serviceClass="com.numerex.gwaas.example.MessagePushService"
+                   inheritHeaders="true">
+         <jaxrs:headers>
+             <entry key="Accept" value="application/json"/>
+         </jaxrs:headers>
+         <jaxrs:providers>
+             <ref bean="jacksonJsonProvider"/>
+         </jaxrs:providers>
+     </jaxrs:client>
+     
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="false"/>
+		<property name="locations">
+			<list>
+				<!-- Environmental specific settings -->
+				<value>classpath:/conf/env-test.properties</value>
+			</list>
+		</property>
+	</bean>     
+     
+	<import resource="classpath:/spring/web_services.xml"/>
+
+
+
+
+</beans>
