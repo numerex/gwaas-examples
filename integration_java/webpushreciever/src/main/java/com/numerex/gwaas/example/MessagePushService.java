@@ -22,11 +22,6 @@ public interface MessagePushService {
 		@Path("/message")
 		public void deliverMessage(Message message);
 	
-		@WebMethod
-		@POST
-		@Consumes(APPLICATION_JSON)
-		@Path("/messages")
-		public void deliverMessages(List<Message> messages);
 		
 		@WebMethod
 		@GET

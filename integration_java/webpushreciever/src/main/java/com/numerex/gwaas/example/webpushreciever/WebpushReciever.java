@@ -15,8 +15,9 @@ import org.slf4j.LoggerFactory;
 import com.numerex.gwaas.example.Message;
 import com.numerex.gwaas.example.MessagePushService;
 
-public class DeliveryService implements MessagePushService {
-	private static final Logger log = LoggerFactory.getLogger(DeliveryService.class);
+@Path("/")
+public class WebpushReciever implements MessagePushService {
+	private static final Logger log = LoggerFactory.getLogger(WebpushReciever.class);
 
 
 	@Override
@@ -27,16 +28,6 @@ public class DeliveryService implements MessagePushService {
 		log.debug("Message: {}",message);
 	}
 
-	@Override
-	@POST
-	@Consumes(APPLICATION_JSON)
-	@Path("/messages")
-	public void deliverMessages(List<Message> messages) {
-		for (Message m : messages) {
-			log.debug("Message: {}",m);
-		}
-		
-	}
 
 	@Override
 	@GET
