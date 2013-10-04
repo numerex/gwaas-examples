@@ -1,0 +1,7 @@
+packages/
+*/bin/
+*/csx/
+*/obj/
+*/rcf/
+*.suo
+*.user
