@@ -1,6 +1,5 @@
 var express = require('express');
 var http = require('http');
-var fs = require('fs');
 
 var app = express();
 var auth = express.basicAuth(function(user, pass) {
