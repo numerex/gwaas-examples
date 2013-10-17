@@ -1,0 +1,10 @@
+{
+  "name": "webpushreciever",
+  "description": "Numerex Slipstream Node Receiver Example",
+  "version": "0.1.0",
+  "author": "Andrew Wolverton",
+  "dependencies": {
+    "express": "~3.4.1"
+  },
+  "devDependencies": {}
+}
