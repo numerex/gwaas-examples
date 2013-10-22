@@ -1,0 +1,20 @@
+<project name="m2m-ota-java" basedir="." default="compile">
+
+  <target name="init">
+    <property name="output.dir" value="classes"/>
+    <property name="source.dir" value="${basedir}"/>
+  </target>
+  
+  <target name="clean" depends="init">
+    <delete dir="${output.dir}"/>
+  </target>
+  
+  <target name="prepare" depends="clean">
+    <mkdir dir="${output.dir}"/>
+  </target>
+  
+  <target name="compile" depends="prepare">
+    <javac srcdir="${source.dir}" destdir="${output.dir}" includeantruntime="false"/>
+  </target>
+  
+</project>
