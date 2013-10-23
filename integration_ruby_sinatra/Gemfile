@@ -1,0 +1,7 @@
+ruby '1.9.3'
+
+source 'https://rubygems.org'
+source "http://gems.numerexfast.com:8808"
+
+gem 'sinatra', '1.4.4'
+gem 'json'
