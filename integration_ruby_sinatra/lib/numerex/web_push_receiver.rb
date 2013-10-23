@@ -27,7 +27,7 @@ module Numerex
       'true'
     end
 
-    post '/numerex_services/delivery/message/message' do
+    post '/numerex_services/delivery/message' do
       protected!
       message_received params
       'ok'
