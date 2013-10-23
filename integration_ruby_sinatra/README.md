@@ -32,3 +32,9 @@ end
 require 'thin'
 web_push_receiver = ExampleReceiver.new
 Thin::Server.start('0.0.0.0', 3000, web_push_receiver)
+```
+
+Note: To generate a gem, run:
+gem build numerex_web_push_receiver.gemspec
+
+Don't forget to bump the version number
