@@ -11,7 +11,9 @@ Params
 curl --user username:password -H "Content-Type: application/json" -X POST http://yoururl.com:3000/numerex_services/delivery/message -d '{"device_name_type":"imei", "device_name":"357820023702392"}'
 curl --user username:password -H "Content-Type: application/json" -X POST https://yoururl.com:3000/numerex_services/delivery/message -d '{"device_name_type":"imei", "device_name":"357820023702392"}' -k
 
-=== Ruby usage
+Ruby usage
+=============
+
 The below snippet indicates how to subclass and use Numerex's WebPushReceiver mechanism in ruby.
 
 ```ruby
