@@ -9,7 +9,7 @@ class CustomHandler(BaseHTTPRequestHandler):
                         self.send_response(401)
                         self.wfile.write(bytes('no auth header received', 'UTF-8'))
                         self.end_headers()
-                elif self.headers['Authorization'] == 'Basic YW5kcmV3aXN0aGVjb29sZXN0OmFuZHJld2lzdGhlY29vbGVzdA==':
+                elif self.headers['Authorization'] == 'Basic YW5kcmV3aXN0aGVjb29sZXN0OmFuZHJld2lzdGhlY29vbGVzdA==':  #andrewisthecoolest:andrewisthecoolest
                         self.send_response(200)
                         self.wfile.write(bytes(self.headers['Authorization'], 'UTF-8'))
                         self.wfile.write(bytes(' authenticated!', 'UTF-8'))
@@ -26,8 +26,6 @@ class CustomHandler(BaseHTTPRequestHandler):
                         self.end_headers()
 
                         print ('\r\n\r\n-----------\r\ngot a message:  ' + str(req_str))
-
-
                 else:
                         self.send_response(401)
                         self.wfile.write(bytes(self.headers['Authorization'], 'UTF-8'))

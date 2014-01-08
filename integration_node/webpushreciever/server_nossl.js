@@ -1,26 +1,36 @@
-var express = require('express');
-var http = require('http');
+var express = require('express')
+var http = require('http')
+var measured = require('measured')
 
-var app = express();
+var expressApp = express()
+var measuredCollection = new measured.Collection('http')
+var rps = measuredCollection.meter('requestsPerSecond')
+
 var auth = express.basicAuth(function(user, pass) {
-    return (user == "andrewisthecoolest" && pass == "andrewisthecoolest");
-},'Authentication required');
+    return (user == "andrewisthecoolest" && pass == "andrewisthecoolest")
+},'Authentication required')
 
-app.use(express.logger());
-app.use(express.bodyParser());
+expressApp.use(express.logger())
+expressApp.use(express.bodyParser())
 
-app.get('/numerex_services/delivery/system_status/system_status', auth, function(req, res) {
-    console.log("System status check");
-    var body = 'true';
-    res.send(body);
-});
+expressApp.get('/numerex_services/delivery/system_status/system_status', auth, function(req, res) {
+    console.log("System status check")
+    var body = 'true'
+    res.send(body)
+})
 
-app.post('/numerex_services/delivery/message/message', auth, function(req, res) {
-    console.log('\r\nMessage = ' + JSON.stringify(req.body));
-    var body = 'OK';
-    res.send(body);
-});
+expressApp.post('/numerex_services/delivery/message/message', auth, function(req, res) {
+    rps.mark()
+    console.log('\r\nMessage = ' + JSON.stringify(req.body))
+    console.log('\r\nMetrics = ' + JSON.stringify(measuredCollection.toJSON()))
+    var body = 'OK'
+    res.send(body)
+    rps.end('Thanks')
+})
 
-http.createServer(app).listen(80);
+setInterval(function() {
+    console.log('\r\nPeriodic Metrics = ' + JSON.stringify(measuredCollection.toJSON()))
+}, 10000);
+http.createServer(expressApp).listen(8080)
 
 console.log('App started')
